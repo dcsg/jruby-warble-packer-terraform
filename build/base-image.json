@@ -1,0 +1,40 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `AWS_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET`}}",
+    "aws_region": "eu-west-1",
+    "aws_base_ami": "ami-402f1a33",
+    "aws_instance_type": "t2.micro"
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "{{user `aws_region`}}",
+      "source_ami": "{{user `aws_base_ami`}}",
+      "instance_type": "{{user `aws_instance_type`}}",
+      "ssh_username": "admin",
+      "ami_name": "base-image-openjdk-8-{{timestamp}}",
+      "associate_public_ip_address": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "echo 'Waiting 180 seconds for cloud-init'",
+        "timeout 180 /bin/bash -c 'until stat /var/lib/cloud/instance/boot-finished &>/dev/null; do echo waiting...; sleep 10; done'"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'",
+      "inline": [
+        "echo 'deb http://ftp.debian.org/debian jessie-backports main' | sudo tee /etc/apt/sources.list.d/backports.list > /dev/null",
+        "apt-get update",
+        "DEBIAN_FRONTEND=noninteractive apt-get install -y -t jessie-backports -q openjdk-8-jre-headless ca-certificates-java"
+      ]
+    }
+  ]
+}
