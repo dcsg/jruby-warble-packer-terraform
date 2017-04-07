@@ -1,6 +1,6 @@
 ## Sample code of Pack:er and Terra:deploy a JRuby Application
 
-This repository holds the code of the **Pack:er and Terra:deploy a JRuby Application** Blog series.
+This repository holds the code of the **[Pack:er and Terra:deploy a JRuby Application](https://dcsg.me/articles/pack-er-and-terra-deploy-a-jruby-application-part-1/)** Blog series.
 
 I do recommend you to read it in order to understand it's content.
 
