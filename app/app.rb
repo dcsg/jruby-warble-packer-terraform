@@ -1,5 +1,5 @@
 require 'sinatra'
 
 get '/' do
-  "Hello World!"
+  "#{['Hello', 'Hi', 'Hey', 'Yo'][rand(4)]} World!"
 end

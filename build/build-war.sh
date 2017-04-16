@@ -8,4 +8,4 @@ echo "building war file"
 warble executable war
 
 echo "moving app.was to build folder"
-mv app.war build/app.war
+mv app.war build/toupload/app.war

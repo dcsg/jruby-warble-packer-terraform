@@ -15,8 +15,7 @@
       "source_ami": "{{user `aws_base_ami`}}",
       "instance_type": "{{user `aws_instance_type`}}",
       "ssh_username": "admin",
-      "ami_name": "app-{{timestamp}}",
-      "associate_public_ip_address": true
+      "ami_name": "my-app-name-{{timestamp}}"
     }
   ],
   "provisioners": [
@@ -33,8 +32,8 @@
     },
     {
       "type": "file",
-      "source": "app.war",
-      "destination": "/home/admin/app.war"
+      "source": "toupload/",
+      "destination": "/home/admin/"
     }
   ]
 }

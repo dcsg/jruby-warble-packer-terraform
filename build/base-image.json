@@ -15,8 +15,7 @@
       "source_ami": "{{user `aws_base_ami`}}",
       "instance_type": "{{user `aws_instance_type`}}",
       "ssh_username": "admin",
-      "ami_name": "base-image-openjdk-8-{{timestamp}}",
-      "associate_public_ip_address": true
+      "ami_name": "base-image-openjdk-8-{{timestamp}}"
     }
   ],
   "provisioners": [
